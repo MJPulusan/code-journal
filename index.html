@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -14,14 +14,51 @@
     <link rel="stylesheet" href="css/reset.css" />
     <link rel="stylesheet" href="css/layout.css" />
     <link rel="stylesheet" href="css/styles.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
   <body>
     <header>
       <div class="container"></div>
+      <h1>Code Journal</h1>
     </header>
+
     <main class="container">
       <div data-view="entry-form"></div>
       <div data-view="entries" class="hidden"></div>
+      <div class="row" data-view="entry-form">
+        <h1>New Entry</h1>
+      </div>
+      <form id="photo-form">
+
+      <div class="row">
+        <div class="column-full">
+          <img id="photo-preview" src="images/placeholder-image-square.jpg" alt="Photo-Preview" />
+        </div>
+      </div>
+
+        <div class="form">
+          <label for="title">Title</label>
+        </div>
+
+        <div class="row">
+          <input type="text" id="title" name="title" required />
+        </div>
+
+        <div>
+          <label for="photoURL">Photo URL</label>
+        </div>
+
+        <div class="row">
+          <input type="text" id="photoURL" name="photoURL" required />
+        </div>
+        <div class="row">
+          <label for="comments">Notes</label>
+        </div>
+        <div>
+          <textarea id="comments"></textarea>
+        </div>
+        <div><button type="submit">SAVE</button></div>
+      </form>
     </main>
     <script src="js/data.js"></script>
     <script src="js/main.js"></script>
