@@ -31,9 +31,8 @@ form.addEventListener('submit', (event: Event) => {
     notes: $notes.value,
   };
 
-  data.nextEntryId++;
   data.entries.push(newEntry);
-  console.log(data);
+  data.nextEntryId++;
   writeData();
   form.reset();
   $photoPreview.src = 'images/placeholder-image-square.jpg';
