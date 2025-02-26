@@ -19,7 +19,10 @@
   <body>
     <header>
       <div class="container">
-        <h1>Code Journal</h1>
+        <div class="column-half">
+          <h1>Code Journal</h1>
+          <h3>Entries</h3>
+        </div>
       </div>
     </header>
     <main class="container">
@@ -53,11 +56,64 @@
             </div>
           </div>
           <div>
-            <button type="submit">SAVE</button>
+            <button class="btn-primary" type="submit">SAVE</button>
           </div>
         </form>
       </div>
-      <div data-view="entries" class="hidden"></div>
+
+      <!-- <div data-view="entries" class="hidden"> -->
+      <div data-view="entries">
+        <div class="row">
+          <div class="column-full">
+            <h1>Entries</h1>
+            <button class="btn-secondary" type="submit">NEW</button>
+          </div>
+        </div>
+        <ul>
+          <li>
+            <div class="row">
+              <div class="column-half">
+                <img
+                  id="photo-preview1"
+                  src="images/placeholder-image-square.jpg"
+                  alt="Photo-Preview1" />
+              </div>
+              <div class="column-half">
+                <label for="top"><b>A newer image</b></label>
+                <p>A breathtaking scenery!</p>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="row">
+              <div class="column-half">
+                <img
+                  id="photo-preview2"
+                  src="images/placeholder-image-square.jpg"
+                  alt="Photo-Preview2" />
+              </div>
+              <div class="column-half">
+                <label for="mid"><b>This is a newer image</b></label>
+                <p>A beautiful place!</p>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="row">
+              <div class="column-half">
+                <img
+                  id="photo-preview3"
+                  src="images/placeholder-image-square.jpg"
+                  alt="Photo-Preview3" />
+              </div>
+              <div class="column-half">
+                <label for="bottom"><b>A new image</b></label>
+                <p>A spectacular view!</p>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
     </main>
     <script src="js/data.js"></script>
     <script src="js/main.js"></script>
