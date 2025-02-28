@@ -36,12 +36,12 @@ form.addEventListener('submit', (event: Event) => {
   writeData();
 
   const ul = document.getElementById('entList');
+
   if (ul) {
     ul.prepend(renderEntry(newEntry));
   }
-  document.addEventListener('DOMContentLoaded', () => {
-    toggleNoEntries();
-  });
+
+  toggleNoEntries();
 
   form.reset();
   $photoPreview.src = 'images/placeholder-image-square.jpg';
@@ -75,9 +75,33 @@ function renderEntry(entry: Entry): HTMLLIElement {
   return li;
 }
 
+// to load DOM entries
+
+document.addEventListener('DOMContentLoaded', () => {
+  const data = {
+    entries: ['Entry 1', 'Entry 2', 'entry 3'],
+  };
+
+  const listElement = document.getElementById('entriesList');
+  if (!listElement) return;
+
+  data.entries.forEach((entry) => {
+    const listItem = document.createElement('li');
+    listItem.textContent = entry;
+    listItem.appendChild(listItem);
+  });
+});
+
+//  for toggle switch
+
 function toggleNoEntries(): void {
   const messageElement = document.getElementById('noEntriesMessage');
+
   if (!messageElement) return;
-  messageElement.style.display =
-    messageElement.style.display === 'none' ? 'block' : 'none';
+
+  if (data.entries.length === 0) {
+    messageElement.classList.remove('hidden');
+  } else {
+    messageElement.classList.add('hidden');
+  }
 }

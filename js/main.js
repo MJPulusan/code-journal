@@ -25,9 +25,7 @@ form.addEventListener('submit', (event) => {
   if (ul) {
     ul.prepend(renderEntry(newEntry));
   }
-  document.addEventListener('DOMContentLoaded', () => {
-    toggleNoEntries();
-  });
+  toggleNoEntries();
   form.reset();
   $photoPreview.src = 'images/placeholder-image-square.jpg';
 });
@@ -52,34 +50,26 @@ function renderEntry(entry) {
   li.appendChild($textContainer);
   return li;
 }
+// to load DOM entries
+document.addEventListener('DOMContentLoaded', () => {
+  const data = {
+    entries: ['Entry 1', 'Entry 2', 'entry 3'],
+  };
+  const listElement = document.getElementById('entriesList');
+  if (!listElement) return;
+  data.entries.forEach((entry) => {
+    const listItem = document.createElement('li');
+    listItem.textContent = entry;
+    listItem.appendChild(listItem);
+  });
+});
+//  for toggle switch
 function toggleNoEntries() {
   const messageElement = document.getElementById('noEntriesMessage');
   if (!messageElement) return;
-  messageElement.style.display =
-    messageElement.style.display === 'none' ? 'block' : 'none';
+  if (data.entries.length === 0) {
+    messageElement.classList.remove('hidden');
+  } else {
+    messageElement.classList.add('hidden');
+  }
 }
-// function toggleNoEntries(data: Data): void {
-//   const messageElement = document.getElementById('noEntriesMessage');
-//   if (!messageElement) return;
-//   if (data.entries.length === 0) {
-//     messageElement.classList.add('hidden');
-//   } else {
-//     messageElement.classList.remove('hidden');
-//   }
-// }
-// for toggle switching
-// function toggleNoEntries(): void {
-//   const ul = document.getElementById('entList');
-//   const noEntMessage = document.querySelector('.no-entries-message');
-//   if (!ul) return;
-//   if (data.entries.length === 0) {
-//     if (!noEntMessage) {
-//       const message = document.createElement('p');
-//       message.className = 'no-entries-message';
-//       message.textContent = 'No entries recorded.';
-//       ul.parentNode?.appendChild(message);
-//     }
-//   } else {
-//     noEntMessage?.remove();
-//   }
-// }
