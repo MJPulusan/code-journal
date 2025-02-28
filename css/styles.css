@@ -35,33 +35,18 @@ header .container {
   padding: 6px;
 }
 
+/* styling for issue 2 */
+
 header .column-half {
   display: flex;
 }
 
-h3 {
+header h3 {
   padding-left: 0.5rem;
   margin-top: 2rem;
 }
 
-ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.data-view {
-  display: block;
-  width: 100%;
-  margin-bottom: 1.5rem;
-  margin-top: 0.5rem;
-}
-
-div .entries {
-  margin-top: 2rem;
-  align-items: end;
-}
-
+nav,
 .btn-secondary {
   font-family: 'Sans serif', serif;
   font-size: 16px;
@@ -71,4 +56,42 @@ div .entries {
   border-radius: 6px;
   padding: 8px;
   float: right;
+}
+
+h1,
+nav {
+  display: inline-block;
+  align-items: center;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* entries size adjustment */
+.entry-image {
+  width: 100%;
+  max-width: 100%;
+  display: block;
+}
+
+@media screen and (width >= 768px) {
+  .photo-preview {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    margin-top: 2rem;
+  }
+
+  .entry-image {
+    width: 50%;
+  }
+}
+
+/* ends here */
+
+.hidden {
+  display: none;
 }

@@ -61,58 +61,20 @@
         </form>
       </div>
 
-      <!-- <div data-view="entries" class="hidden"> -->
       <div data-view="entries">
+        <!-- <div data-view="entries"> -->
         <div class="row">
           <div class="column-full">
             <h1>Entries</h1>
-            <button class="btn-secondary" type="submit">NEW</button>
+            <!-- <button class="btn-secondary" type="submit">NEW</button> -->
+            <nav>
+              <a href="#" class="btn-secondary" id="entries-link">New</a>
+            </nav>
           </div>
+          <div id="noEntriesMessage">No entries</div>
+          <button onclick="toggleNoEntries()">Toggle No Entries</button>
         </div>
-        <ul>
-          <li>
-            <div class="row">
-              <div class="column-half">
-                <img
-                  id="photo-preview1"
-                  src="images/placeholder-image-square.jpg"
-                  alt="Photo-Preview1" />
-              </div>
-              <div class="column-half">
-                <label for="top"><b>A newer image</b></label>
-                <p>A breathtaking scenery!</p>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div class="row">
-              <div class="column-half">
-                <img
-                  id="photo-preview2"
-                  src="images/placeholder-image-square.jpg"
-                  alt="Photo-Preview2" />
-              </div>
-              <div class="column-half">
-                <label for="mid"><b>This is a newer image</b></label>
-                <p>A beautiful place!</p>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div class="row">
-              <div class="column-half">
-                <img
-                  id="photo-preview3"
-                  src="images/placeholder-image-square.jpg"
-                  alt="Photo-Preview3" />
-              </div>
-              <div class="column-half">
-                <label for="bottom"><b>A new image</b></label>
-                <p>A spectacular view!</p>
-              </div>
-            </div>
-          </li>
-        </ul>
+        <ul id="entList"></ul>
       </div>
     </main>
     <script src="js/data.js"></script>
