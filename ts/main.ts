@@ -76,7 +76,6 @@ function renderEntry(entry: Entry): HTMLLIElement {
 }
 
 // to load DOM entries
-
 document.addEventListener('DOMContentLoaded', () => {
   const data = {
     entries: ['Entry 1', 'Entry 2', 'entry 3'],
@@ -88,12 +87,11 @@ document.addEventListener('DOMContentLoaded', () => {
   data.entries.forEach((entry) => {
     const listItem = document.createElement('li');
     listItem.textContent = entry;
-    listItem.appendChild(listItem);
+    listElement.appendChild(listItem);
   });
 });
 
 //  for toggle switch
-
 function toggleNoEntries(): void {
   const messageElement = document.getElementById('noEntriesMessage');
 
@@ -104,4 +102,26 @@ function toggleNoEntries(): void {
   } else {
     messageElement.classList.add('hidden');
   }
+}
+
+// for view swapping
+function viewSwap(viewName: 'entries' | 'entry-form'): void {
+  const entriesView = document.querySelector('.entries-view') as HTMLElement;
+  const entryFormView = document.querySelector(
+    '.entry-form-view',
+  ) as HTMLElement;
+
+  if (!entriesView || !entryFormView) {
+    throw new Error('One or both view elements are missing');
+  }
+  if (viewName === 'entries') {
+    entriesView.style.display = 'block';
+    entryFormView.style.display = 'none';
+  } else if (viewName === 'entry-form') {
+    entriesView.style.display = 'none';
+    entryFormView.style.display = 'block';
+  }
+
+  data.view = viewName;
+  localStorage.setItem('currentView', viewName);
 }
