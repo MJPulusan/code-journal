@@ -21,32 +21,6 @@ $photoURLInput.addEventListener('input', () => {
   $photoPreview.src = $photoURLInput.value;
 });
 
-form.addEventListener('submit', (event: Event) => {
-  event.preventDefault();
-
-  const newEntry: Entry = {
-    entryId: data.nextEntryId,
-    title: $titleInput.value,
-    photoURL: $photoURLInput.value,
-    notes: $notes.value,
-  };
-
-  data.nextEntryId++;
-  data.entries.unshift(newEntry);
-  writeData();
-
-  const ul = document.getElementById('entList');
-
-  if (ul) {
-    ul.prepend(renderEntry(newEntry));
-  }
-
-  toggleNoEntries();
-
-  form.reset();
-  $photoPreview.src = 'images/placeholder-image-square.jpg';
-});
-
 // start of issue #2
 function renderEntry(entry: Entry): HTMLLIElement {
   const li = document.createElement('li');
@@ -81,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
     entries: ['Entry 1', 'Entry 2', 'entry 3'],
   };
 
-  const listElement = document.getElementById('entriesList');
+  const listElement = document.getElementById('#entList');
   if (!listElement) return;
 
   data.entries.forEach((entry) => {
@@ -125,3 +99,31 @@ function viewSwap(viewName: 'entries' | 'entry-form'): void {
   data.view = viewName;
   localStorage.setItem('currentView', viewName);
 }
+
+form.addEventListener('submit', (event: Event) => {
+  event.preventDefault();
+
+  const newEntry: Entry = {
+    entryId: data.nextEntryId,
+    title: $titleInput.value,
+    photoURL: $photoURLInput.value,
+    notes: $notes.value,
+  };
+
+  data.nextEntryId++;
+  data.entries.unshift(newEntry);
+  writeData();
+
+  const ul = document.getElementById('entList');
+
+  if (ul) {
+    const entryElement = renderEntry(newEntry);
+    ul.prepend(entryElement);
+  }
+
+  toggleNoEntries();
+
+  form.reset();
+  $photoPreview.src = 'images/placeholder-image-square.jpg';
+  viewSwap('entries');
+});
