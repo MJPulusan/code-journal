@@ -27,7 +27,6 @@
     </header>
     <main class="container">
       <div data-view="entry-form">
-        <!-- <div data-view="entry-form" class="hidden"> -->
         <div class="row">
           <div class="column-full">
             <h1>New Entry</h1>
@@ -62,16 +61,18 @@
         </form>
       </div>
 
-      <!-- <div data-view="entries" class="hidden"> -->
-      <div data-view="entries">
+      <div data-view="entries" class="hidden" id="entryId">
         <div class="container2">
           <div class="column-full">
-            <nav><button class="btn-secondary" type="submit">NEW</button></nav>
+            <h1>Entries</h1>
+            <a id="newButton">NEW</a>
           </div>
-          <div id="noEntriesMessage">
-            <p>No entries</p>
+
+          <div class="row">
+            <p class="noEntriesMessage">No entries</p>
           </div>
         </div>
+
         <ul id="entList"></ul>
       </div>
     </main>

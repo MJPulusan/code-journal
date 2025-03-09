@@ -1,16 +1,23 @@
 'use strict';
+// assigning variables & Selecting DOM elements
 const $photoURLInput = document.querySelector('#photoURL');
 const $titleInput = document.querySelector('#title');
 const $photoPreview = document.querySelector('#photo-preview');
-const $notes = document.querySelector('#comments');
-const form = document.getElementById('photo-form');
+const $notesInput = document.querySelector('#comments');
+const $formElement = document.querySelector('#photo-form');
+const $entryList = document.querySelector('#entList');
+const $noEntriesMessage = document.querySelector('.noEntriesMessage');
+const $newEntryButton = document.querySelector('#newButton');
 if (!$titleInput) throw new Error('$titleInput does not exist');
 if (!$photoURLInput) throw new Error('$photoURLInput does not exist');
 if (!$photoPreview) throw new Error('$photoPreview does not exist');
+if (!$notesInput) throw new Error('$photoPreview does not exist');
+if (!$formElement) throw new Error('One or more form elements are missing');
+// Live preview for photo input
 $photoURLInput.addEventListener('input', () => {
   $photoPreview.src = $photoURLInput.value;
 });
-// start of issue #2
+// Function to render a new entry in the list
 function renderEntry(entry) {
   const li = document.createElement('li');
   li.className = 'photo-preview';
@@ -31,64 +38,63 @@ function renderEntry(entry) {
   li.appendChild($textContainer);
   return li;
 }
-// to load DOM entries
+// Loads entries from localStorage and displays them
 document.addEventListener('DOMContentLoaded', () => {
-  const data = {
-    entries: ['Entry 1', 'Entry 2', 'entry 3'],
-  };
-  const listElement = document.getElementById('#entList');
-  if (!listElement) return;
+  if (!$entryList || !$noEntriesMessage) {
+    throw new Error('One or more list elements are missing');
+  }
+  // Retrieve stored entries from localStorage
+  const savedEntries = localStorage.getItem('entries');
+  if (savedEntries) {
+    data.entries = JSON.parse(savedEntries);
+  }
+  // Retrieve last view from localStorage
+  const savedView = localStorage.getItem('currentView');
+  viewSwap(savedView ?? 'entries'); // Default to 'entries' if no view is saved
+  // Render entry - to load entries into the UI
   data.entries.forEach((entry) => {
-    const listItem = document.createElement('li');
-    listItem.textContent = entry;
-    listElement.appendChild(listItem);
+    const entryElement = renderEntry(entry);
+    $entryList.appendChild(entryElement);
   });
+  toggleNoEntries();
 });
-//  for toggle switch
+// Toggles the "No Entries" message visibility
 function toggleNoEntries() {
-  const messageElement = document.getElementById('noEntriesMessage');
-  if (!messageElement) return;
-  if (data.entries.length === 0) {
-    messageElement.classList.remove('hidden');
-  } else {
-    messageElement.classList.add('hidden');
-  }
+  if (!$noEntriesMessage) return;
+  $noEntriesMessage.classList.toggle('hidden', data.entries.length > 0);
 }
-// for view swapping
+// Handles view swapping between the entries list and the form
 function viewSwap(viewName) {
-  const entriesView = document.querySelector('.entries-view');
-  const entryFormView = document.querySelector('.entry-form-view');
-  if (!entriesView || !entryFormView) {
-    throw new Error('One or both view elements are missing');
+  const $entriesView = document.querySelector('[data-view="entries"]');
+  const $entryFormView = document.querySelector('[data-view="entry-form"]');
+  if (!$entriesView || !$entryFormView) {
+    throw new Error('View elements are missing');
   }
-  if (viewName === 'entries') {
-    entriesView.style.display = 'block';
-    entryFormView.style.display = 'none';
-  } else if (viewName === 'entry-form') {
-    entriesView.style.display = 'none';
-    entryFormView.style.display = 'block';
-  }
+  $entriesView.classList.toggle('hidden', viewName !== 'entries');
+  $entryFormView.classList.toggle('hidden', viewName !== 'entry-form');
   data.view = viewName;
   localStorage.setItem('currentView', viewName);
 }
-form.addEventListener('submit', (event) => {
+// Handle new entry button click
+$newEntryButton?.addEventListener('click', () => {
+  viewSwap('entry-form');
+});
+// Form submission handler
+$formElement.addEventListener('submit', (event) => {
   event.preventDefault();
   const newEntry = {
     entryId: data.nextEntryId,
     title: $titleInput.value,
     photoURL: $photoURLInput.value,
-    notes: $notes.value,
+    notes: $notesInput.value,
   };
   data.nextEntryId++;
   data.entries.unshift(newEntry);
-  writeData();
-  const ul = document.getElementById('entList');
-  if (ul) {
-    const entryElement = renderEntry(newEntry);
-    ul.prepend(entryElement);
-  }
+  localStorage.setItem('entries', JSON.stringify(data.entries)); // Save to localStorage
+  const entryElement = renderEntry(newEntry);
+  $entryList.prepend(entryElement);
   toggleNoEntries();
-  form.reset();
+  $formElement.reset();
   $photoPreview.src = 'images/placeholder-image-square.jpg';
   viewSwap('entries');
 });

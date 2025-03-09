@@ -33,6 +33,7 @@ header .container {
   float: right;
   border-radius: 5px;
   padding: 6px;
+  cursor: pointer;
 }
 
 /* styling for issue 2 */
@@ -46,7 +47,7 @@ header h3 {
   margin-top: 2rem;
 }
 
-.btn-secondary {
+a {
   font-family: 'Sans serif', serif;
   font-size: 16px;
   font-weight: bold;
@@ -54,8 +55,9 @@ header h3 {
   color: #f0f0f0;
   border-radius: 6px;
   padding: 8px;
-  display: flex;
+  cursor: pointer;
   float: right;
+  margin-top: 1.5rem;
 }
 
 h1 {
@@ -69,10 +71,9 @@ ul {
   margin: 0;
 }
 
-/* .container2 {
-position: relative
-
-} */
+.container2 {
+  position: relative;
+}
 
 /* entries size adjustment */
 .entry-image {
@@ -94,8 +95,7 @@ position: relative
   }
 }
 
-/* ends here */
-
-.hidden {
-  display: none;
+.noEntriesMessage {
+  margin-left: 1rem;
+  font-size: 1.5rem;
 }
