@@ -8,11 +8,13 @@ const $formElement = document.querySelector('#photo-form');
 const $entryList = document.querySelector('#entList');
 const $noEntriesMessage = document.querySelector('.noEntriesMessage');
 const $newEntryButton = document.querySelector('#newButton');
+const $entHead = document.querySelector('#ent-Head');
 if (!$titleInput) throw new Error('$titleInput does not exist');
 if (!$photoURLInput) throw new Error('$photoURLInput does not exist');
 if (!$photoPreview) throw new Error('$photoPreview does not exist');
 if (!$notesInput) throw new Error('$photoPreview does not exist');
 if (!$formElement) throw new Error('One or more form elements are missing');
+if (!$entHead) throw new Error('$entHead does not exist');
 // Live preview for photo input
 $photoURLInput.addEventListener('input', () => {
   $photoPreview.src = $photoURLInput.value;
@@ -75,6 +77,11 @@ function viewSwap(viewName) {
   data.view = viewName;
   localStorage.setItem('currentView', viewName);
 }
+// "Entries" navbar eventlistener
+$entHead.addEventListener('click', (event) => {
+  event.preventDefault();
+  viewSwap('entries'); // Swap to the Entries view
+});
 // Handle new entry button click
 $newEntryButton?.addEventListener('click', () => {
   viewSwap('entry-form');

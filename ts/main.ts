@@ -20,12 +20,14 @@ const $noEntriesMessage = document.querySelector(
 const $newEntryButton = document.querySelector(
   '#newButton',
 ) as HTMLAnchorElement;
+const $entHead = document.querySelector('#ent-Head') as HTMLHeadingElement;
 
 if (!$titleInput) throw new Error('$titleInput does not exist');
 if (!$photoURLInput) throw new Error('$photoURLInput does not exist');
 if (!$photoPreview) throw new Error('$photoPreview does not exist');
 if (!$notesInput) throw new Error('$photoPreview does not exist');
 if (!$formElement) throw new Error('One or more form elements are missing');
+if (!$entHead) throw new Error('$entHead does not exist');
 
 // Live preview for photo input
 $photoURLInput.addEventListener('input', () => {
@@ -113,6 +115,12 @@ function viewSwap(viewName: 'entries' | 'entry-form'): void {
   data.view = viewName;
   localStorage.setItem('currentView', viewName);
 }
+
+// "Entries" navbar eventlistener
+$entHead.addEventListener('click', (event) => {
+  event.preventDefault();
+  viewSwap('entries'); // Swap to the Entries view
+});
 
 // Handle new entry button click
 $newEntryButton?.addEventListener('click', () => {

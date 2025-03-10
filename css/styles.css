@@ -45,6 +45,7 @@ header .column-half {
 header h3 {
   padding-left: 0.5rem;
   margin-top: 2rem;
+  cursor: pointer;
 }
 
 a {
