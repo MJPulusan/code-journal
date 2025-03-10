@@ -111,9 +111,6 @@ function viewSwap(viewName: 'entries' | 'entry-form'): void {
 
   $entriesView.classList.toggle('hidden', viewName !== 'entries');
   $entryFormView.classList.toggle('hidden', viewName !== 'entry-form');
-
-  data.view = viewName;
-  localStorage.setItem('currentView', viewName);
 }
 
 // "Entries" navbar eventlistener
