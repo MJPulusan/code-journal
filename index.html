@@ -19,7 +19,10 @@
   <body>
     <header>
       <div class="container">
-        <h1>Code Journal</h1>
+        <div class="column-half">
+          <h1>Code Journal</h1>
+          <h3 id="ent-Head">Entries</h3>
+        </div>
       </div>
     </header>
     <main class="container">
@@ -53,11 +56,25 @@
             </div>
           </div>
           <div>
-            <button type="submit">SAVE</button>
+            <button class="btn-primary" type="submit">SAVE</button>
           </div>
         </form>
       </div>
-      <div data-view="entries" class="hidden"></div>
+
+      <div data-view="entries" class="hidden" id="entryId">
+        <div class="container2">
+          <div class="column-full">
+            <h1>Entries</h1>
+            <a id="newButton">NEW</a>
+          </div>
+
+          <div class="row">
+            <p class="noEntriesMessage">No entries</p>
+          </div>
+        </div>
+
+        <ul id="entList"></ul>
+      </div>
     </main>
     <script src="js/data.js"></script>
     <script src="js/main.js"></script>

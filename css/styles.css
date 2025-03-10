@@ -4,6 +4,7 @@ img {
 
 label {
   display: block;
+  padding-right: 1.5rem;
 }
 
 input,
@@ -25,11 +26,77 @@ header .container {
   padding-top: 10px;
 }
 
-button {
+.btn-primary {
   background-color: #4c2676;
   color: #f0f0f0;
   margin-top: 4rem;
   float: right;
   border-radius: 5px;
   padding: 6px;
+  cursor: pointer;
+}
+
+/* styling for issue 2 */
+
+header .column-half {
+  display: flex;
+}
+
+header h3 {
+  padding-left: 0.5rem;
+  margin-top: 2rem;
+  cursor: pointer;
+}
+
+a {
+  font-family: 'Sans serif', serif;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #4c2676;
+  color: #f0f0f0;
+  border-radius: 6px;
+  padding: 8px;
+  cursor: pointer;
+  float: right;
+  margin-top: 1.5rem;
+}
+
+h1 {
+  display: inline-block;
+  align-items: center;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.container2 {
+  position: relative;
+}
+
+/* entries size adjustment */
+.entry-image {
+  width: 100%;
+  max-width: 100%;
+  display: block;
+}
+
+@media screen and (width >= 768px) {
+  .photo-preview {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    margin-top: 2rem;
+  }
+
+  .entry-image {
+    width: 50%;
+  }
+}
+
+.noEntriesMessage {
+  margin-left: 1rem;
+  font-size: 1.5rem;
 }
